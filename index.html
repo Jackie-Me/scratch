@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title></title>
+    <style>
+        body{margin:0;padding:0;}
+        .scratch-card {position: relative;}
+        .scratch-card canvas {position: absolute;left: 0;top: 0; z-index:20}
+        .scratch-card .prize{z-index: 10;display: block; border: 0 none;position: absolute;left: 0;top: 0;background: center center no-repeat;background-size: 100%;overflow: hidden;  }
+        .scratch-card .prize img{  width: 100%;}
+    </style>
+</head>
+<body>
+<div id="scratch-demo"></div>
+
+<script src="scratch.0.0.1.js"></script>
+<!--刮刮卡初始化-->
+<script type="text/javascript">
+    var scratchDemo = new Scratch({
+        container: document.getElementById('scratch-demo'),//选中刮刮卡的id
+        width: 211,//刮刮卡宽度
+        height: 120,//高度
+        prizeMask: 'scratchMask.jpg',//被刮开的图片*不可以跨域使用，只能在同域名下才可以使用，原因，canvas下getImageData属性会报错*
+        onScratchReady : function(){}, //刮刮卡刮之前执行的回掉
+        onScratchDiscovered: function () {} //刮刮卡 刮开后执行的回掉
+    });
+    //重置刮刮卡
+    //scratchDemo.refreshScratch();
+    scratchDemo.scratchReady('opened.png'); //当点击上的时候把图片插入到刮刮卡里
+    scratchDemo.scratchStart();//执行刮的动作
+</script>
+</body>
+</html>
